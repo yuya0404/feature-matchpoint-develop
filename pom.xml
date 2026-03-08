@@ -53,6 +53,11 @@
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 	</dependencies>
+	<profiles>
+		<profile>
+			<id>production</id>
+		</profile>
+	</profiles>
 	<build>
 		<plugins>
 			<plugin>

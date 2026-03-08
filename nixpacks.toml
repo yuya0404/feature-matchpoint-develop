@@ -1,5 +1,5 @@
 [phases.build]
-cmds = ["chmod +x mvnw", "./mvnw -B -DskipTests clean install"]
+cmds = ["chmod +x mvnw build.sh", "bash build.sh"]
 
 [start]
 cmd = "java -jar target/*.jar"
