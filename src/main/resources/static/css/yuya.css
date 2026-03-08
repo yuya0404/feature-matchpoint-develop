@@ -32,28 +32,29 @@
 
 .display-1{
 	font-family: impact;
-	margin: 40vh auto 0;
-	transform: translateY(-50%);
+	margin: 0 auto 24px;
 	padding: 15px 30px;
 	background: linear-gradient(135deg, rgba(13,71,161,0.75), rgba(46,125,50,0.65));
 	color: #fff;
 	text-align: center;
-	width: 90%;
-	max-width: 960px;
+	width: 100%;
 	border-radius: 8px;
 	letter-spacing: 4px;
 	text-shadow: 0 2px 8px rgba(0,0,0,0.4);
 	font-size: clamp(2rem, 6vw, 6rem);
+	box-sizing: border-box;
 }
 
 .mode{
-	margin: auto;
-	transform: translateY(-50%);
-	padding: 15px 30px;
+	margin: 0 auto;
+	padding: 0;
 	color: #fff;
 	text-align: center;
-	width: 90%;
-	max-width: 960px;
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 12px;
 }
 
 
@@ -429,17 +430,15 @@ input.mr-2{
 /* スマートフォン (576px以下) */
 @media (max-width: 576px) {
 	.display-1 {
-		margin-top: 30vh;
 		padding: 12px 16px;
 		letter-spacing: 2px;
 	}
 	.mode {
-		padding: 10px;
+		flex-direction: column;
+		align-items: center;
 	}
 	.mode .btn {
-		display: block;
 		width: 80%;
-		margin: 10px auto;
 	}
 	div.bg-success {
 		flex-direction: column;
