@@ -1,5 +1,5 @@
 [build]
-buildCommand = "chmod +x mvnw && JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java)))) ./mvnw -B -DskipTests clean install -Pproduction"
+buildCommand = "chmod +x mvnw && JAVA_HOME=/mise/installs/java/21.0.2 ./mvnw -B -DskipTests clean install -Pproduction"
 
 [deploy]
-startCommand = "java -jar target/*.jar"
+startCommand = "JAVA_HOME=/mise/installs/java/21.0.2 java -jar target/*.jar"
