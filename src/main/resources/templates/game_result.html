@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>スコア画面</title>
+<link th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}"
+	rel="stylesheet">
+<link href="/css/yuya.css" rel="stylesheet">
+</head>
+<body>
+<div th:insert="header"></div>
+<div class="coat-setting">
+	<form action="update_game_info" th:object="${update_game_info}">
+		<div class="coat-view text-white">
+			<div class="left-player">
+				<p th:text="${playerA}"></p>
+				<p th:text="${playerB}"></p>
+			</div>
+			
+			<div class="right-player">
+				<p th:text="${playerC}"></p>
+				<p th:text="${playerD}"></p>
+			</div>
+			<div th:text="${final_score}"></div>
+			
+		</div>
+		<div class ="send">
+		<label>試合番号:</label>
+		<span th:text="${game_no}"></span><br>
+			<label>コート番号: </label>
+			<input type="text" th:field="*{coatNo}"> <br>
+			<label>審判名: </label>
+			<input type="text" th:field="*{judgeName}"><br>
+			<button type="submit">ゲーム終了</button>
+		</div>
+	</form>
+	</div>
+</body>
+</html>

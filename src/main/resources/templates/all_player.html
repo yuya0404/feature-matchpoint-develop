@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}"
+	rel="stylesheet">
+<link href="/css/yuya.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>選手一覧</title>
+</head>
+<body>
+	<div th:insert="header"></div>
+
+	<div class="head">
+		<div class="text-right">
+			<button class="text-white btn-primary" id="btn-return" type="button"
+				onclick="location.href='tournament'">戻る</button>
+		</div>
+
+		<div class="btn-toolbar">
+			<div class="btn-group">
+				<div th:if="${session.loginId}">
+					<div th:if="${session.tournamentEditStatus != 2}">
+					<button class="text-white bg-danger btn mr-3" type="button"
+						onclick="location.href='edit_tournament'">トーナメント表作成</button>
+					</div>
+				</div>
+				
+				<div th:if="${session.loginId}">
+					<div th:if="${session.tournamentEditStatus == 0}">
+						<button class="text-white bg-success btn"
+							onclick="location.href='insert_player'">選手登録</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="text-center">
+			<form action="search" th:object="${edit_player}">
+				<input type="text" name="keyword" class="mr-2" placeholder="キーワード検索">
+				<input type="submit" value="検索">
+			</form>
+		</div>
+	</div>
+	<form action="all_player" th:object="${all_player}">
+
+		<div class="table-responsive">
+			<div class="text-center">
+				<table
+					class="table table-bordered table-striped mx-auto table-hover table-light"
+					border="1">
+					
+					<!-- 選手一覧表へ -->
+					<tr>
+						<th class="table-success">番号</th>
+						<th class="table-success">プレイヤー1</th>
+						<th class="table-success">プレイヤ―2</th>
+						<th class="table-success">トーナメント番号</th>
+					</tr>
+					<tr class="align-middle" th:each="player : ${allPlayer}">
+						<td><a class="btn btn-info "
+							th:href="'/edit_player?teamId=' + ${player.teamId}" role="button">[[
+								${#strings.escapeXml(player.teamId)} ]]</a></td>
+						<td>[[ ${#strings.escapeXml(player.playerAName)} ]]</td>
+						<td>[[ ${#strings.escapeXml(player.playerBName)} ]]</td>
+						<td>[[ ${#strings.escapeXml(player.tournamentNo)} ]]</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

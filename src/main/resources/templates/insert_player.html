@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>選手登録</title>
+<link th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}"
+	rel="stylesheet">
+<!-- <link href="/css/yuya.css" rel="stylesheet"> -->
+<!-- <link th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}" -->
+<!-- 	rel="stylesheet"> -->
+<link href="/css/shoma.css" rel="stylesheet">
+</head>
+
+<body>
+<div th:insert="header"></div>
+	<table>
+		<tr th:if="${validationError}" th:each="error : ${validationError}"></tr>
+	</table>
+
+	<div class="insertplayer">
+
+		<div class="text-right">
+			<button type="button" onclick="location.href='all_player'"
+				class="btn btn-primary">戻る</button>
+		</div>
+
+		<form action="insert_player" th:object="${insert_player}"
+			th:method="post" class="input-size">
+			<div class="form-group">
+				<label>プレイヤー1:</label>
+				<input type="text" th:field="*{playerAName}" placeholder="最大15文字">
+				<span class="error" th:text="${errorMsg1}"></span>
+			</div>
+
+			<div class="form-group">
+				<label>プレイヤー2:</label> 
+				<input type="text" th:field="*{playerBName}" placeholder="最大15文字">
+					<span class="error" th:text="${errorMsg2}"></span>
+			</div>
+
+			<div class="form-group">
+				<label>トーナメント番号:</label>
+				<input type="number" id="tournamentNo" th:field="*{tournamentNo}" 
+					max="10" min="1" placeholder="数値を入力(1～10)" 
+					onChange="tournamentNoCheck()" class="input-number">
+				<span class="error" th:text="${errorMsg3}"></span>
+			</div>
+			<div class="text-center mt-2">
+				<input type="submit" name="insert" value="登録"
+					class="btn btn-primary">
+			</div>
+		</form>
+	</div>
+	
+	<script>
+		function tournamentNoCheck(){
+			const tournamentNo = document.getElementById('tournamentNo')
+			if(tournamentNo.value > 10){
+				tournamentNo.value = 10
+			}
+		}
+	</script>
+</body>
+</html>

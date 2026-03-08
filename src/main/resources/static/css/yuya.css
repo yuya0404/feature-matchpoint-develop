@@ -1,0 +1,637 @@
+
+/* ============================================================
+   カラーパレット
+   --mp-navy:       #0D47A1  (ネイビー)
+   --mp-blue:       #1976D2  (ブルー)
+   --mp-sky:        #42A5F5  (水色)
+   --mp-light-blue: #BBDEFB  (薄水色)
+   --mp-green:      #2E7D32  (グリーン)
+   --mp-light-green:#A5D6A7  (薄グリーン)
+   --mp-bg:         #E8F4FD  (背景)
+   ============================================================ */
+
+/*xxxxxxxxxxxxxxxxxxxxxxxx top画面 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
+.bg-top {
+	background-image: url("../images/badminton.png");
+	background-size: cover;
+	animation: slideIn 1s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(180px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+  }
+  40%,100% {
+    opacity: 1;
+  }
+}
+
+.display-1{
+	font-family: impact;
+	margin: 40vh auto 0;
+	transform: translateY(-50%);
+	padding: 15px 30px;
+	background: linear-gradient(135deg, rgba(13,71,161,0.75), rgba(46,125,50,0.65));
+	color: #fff;
+	text-align: center;
+	width: 90%;
+	max-width: 960px;
+	border-radius: 8px;
+	letter-spacing: 4px;
+	text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+	font-size: clamp(2rem, 6vw, 6rem);
+}
+
+.mode{
+	margin: auto;
+	transform: translateY(-50%);
+	padding: 15px 30px;
+	color: #fff;
+	text-align: center;
+	width: 90%;
+	max-width: 960px;
+}
+
+
+
+
+/*xxxxxxxxxxxxxxxxxxxxxxxx game_setting.html xxxxxxxxxxxxxxxxxxxxxxxx*/
+.bg-gameSetting {
+	background-image: url("../images/haikei.png");
+	background-size: cover;
+}
+
+/* ////////////////////server-setting.html  ////////////////////*/
+body.bg-server{
+	background-image: url("../images/haikei.png");
+}
+
+p{
+font-family: "Hiragino Sans","ヒラギノ角ゴシック";
+}
+
+.left-column {
+  flex: 1 1 200px;
+  background: linear-gradient(135deg, #BBDEFB, #E3F2FD);
+  text-align:center;
+  padding: 30px;
+  color: #0D47A1;
+  font-size: clamp(1.5rem, 4vw, 3.125rem);
+  margin-bottom: 20px;
+}
+
+.right-column {
+  flex: 1 1 200px;
+  background: linear-gradient(135deg, #A5D6A7, #E8F5E9);
+  text-align:center;
+  padding: 30px;
+  color: #1B5E20;
+  font-size: clamp(1.5rem, 4vw, 3.125rem);
+  margin-bottom: 20px;
+  border-left: 3px solid white;
+}
+
+div.bg-success {
+	font-size: 20px;
+	font-family: impact;
+	text-align: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: stretch;
+	padding: 20px;
+	color: #fff;
+	margin: 20px auto;
+	max-width: 960px;
+	background: linear-gradient(135deg, #1976D2, #2E7D32);
+	border-radius: 10px;
+}
+.bg-success p{
+	font-size: 50px;
+}
+.server-select{
+	margin: 20px;
+}
+
+/*////////////////////// score_setting.html //////////////// */
+.bg-scoreSetting{
+	background-image: url("../images/haikei.png");
+}
+
+.game-setting{
+	margin: 30px auto;
+	background: linear-gradient(135deg, #1565C0, #1976D2);
+	width: 90%;
+	max-width: 600px;
+	padding: 30px 20px;
+	font-size: clamp(1rem, 3vw, 1.875rem);
+	border-radius: 10px;
+	color: #fff;
+}
+
+div.coat-view {
+	font-family: impact;
+	font-size: clamp(0.9rem, 2.5vw, 1.25rem);
+	text-align: center;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+	margin: 20px auto;
+	max-width: 960px;
+	padding: 0;
+	color: #fff;
+	background: linear-gradient(135deg, #0D47A1, #1976D2, #2E7D32);
+	border-radius: 10px;
+	box-shadow: 0 4px 15px rgba(13,71,161,0.3);
+	overflow: hidden;
+}
+
+div.left-player {
+  flex: 1 1 200px;
+  background: linear-gradient(135deg, #BBDEFB, #E3F2FD);
+  color: #0D47A1;
+  padding: 20px;
+  margin-bottom: 0;
+  font-weight: bold;
+  min-width: 0;
+}
+
+div.right-player {
+  flex: 1 1 200px;
+  background: linear-gradient(135deg, #A5D6A7, #E8F5E9);
+  color: #1B5E20;
+  padding: 20px;
+  margin-bottom: 0;
+  border-left: 3px solid white;
+  font-weight: bold;
+  min-width: 0;
+}
+
+.score-set{
+	margin: auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 16px;
+}
+
+.right-float{
+	flex: 1 1 140px;
+	font-size: clamp(1.2rem, 3vw, 1.875rem);
+	text-align: center;
+}
+
+.left-float{
+	flex: 1 1 140px;
+	font-size: clamp(1.2rem, 3vw, 1.875rem);
+	text-align: center;
+}
+
+.size{
+	font-size: clamp(1rem, 3vw, 1.875rem);
+}
+
+.send{
+	margin: 30px auto;
+	width: 90%;
+	max-width: 400px;
+}
+
+.send label, .send input, .send button{
+	margin: 10px;
+}
+.send button{
+	margin: auto;
+	text-align: center;
+}
+
+.send label{
+	display: inline-block;
+	width: auto;
+	min-width: 80px;
+}
+/*game_set_result.html  */
+
+/* #table { */
+/*    text-center; */
+/*    border-radius; */
+/*    color: #66CC66; */
+/*    background-color: #FFFFFF; */
+/* } */
+
+
+
+/*xxxxxxxxxxxxxxxxxxxxxxx all系・共通部分xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx */
+
+body {
+	font-size: 1.1rem;
+	background-color: #E8F4FD;
+	color: #1a1a2e;
+}
+
+/* ナビバー */
+.navbar.bg-dark {
+	background: linear-gradient(90deg, #0D47A1, #1565C0) !important;
+	box-shadow: 0 2px 8px rgba(13,71,161,0.4);
+}
+
+/* テーブル共通 */
+table {
+   text-align: center;
+   width: 100%;
+   font-family: "メイリオ";
+   border-radius: 10px;
+   overflow: hidden;
+}
+
+/* テーブルヘッダー */
+.table-success {
+	background: linear-gradient(90deg, #1565C0, #1976D2) !important;
+	color: #fff !important;
+	border-color: #1565C0 !important;
+}
+
+/* テーブル行ホバー */
+.table-hover tbody tr:hover {
+	background-color: #BBDEFB !important;
+}
+
+/* GO!ボタン */
+.btn-light-moon {
+    background: linear-gradient(135deg, #42A5F5, #1976D2);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 16px;
+    font-weight: bold;
+    transition: opacity 0.2s;
+}
+.btn-light-moon:hover {
+    opacity: 0.85;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* プライマリボタン上書き */
+.btn-primary {
+	background: linear-gradient(135deg, #1976D2, #0D47A1) !important;
+	border-color: #0D47A1 !important;
+}
+.btn-primary:hover {
+	background: linear-gradient(135deg, #42A5F5, #1565C0) !important;
+}
+
+/* サクセスボタン上書き */
+.btn-success {
+	background: linear-gradient(135deg, #43A047, #2E7D32) !important;
+	border-color: #2E7D32 !important;
+}
+.btn-success:hover {
+	background: linear-gradient(135deg, #66BB6A, #388E3C) !important;
+}
+
+/* インフォボタン上書き（選手番号など） */
+.btn-info {
+	background: linear-gradient(135deg, #42A5F5, #1976D2) !important;
+	border-color: #1565C0 !important;
+	color: #fff !important;
+}
+.btn-info:hover {
+	background: linear-gradient(135deg, #64B5F6, #1565C0) !important;
+	color: #fff !important;
+}
+
+/* デンジャーボタン（削除系は赤のまま維持） */
+.bg-danger {
+	background: linear-gradient(135deg, #E53935, #B71C1C) !important;
+}
+
+/* h1・h2 見出し */
+h1 {
+	color: #0D47A1;
+	font-weight: bold;
+}
+h2 {
+	color: #1565C0;
+}
+
+/* カード風コンテナ */
+.card-mp {
+	background: #fff;
+	border-radius: 12px;
+	box-shadow: 0 4px 16px rgba(13,71,161,0.10);
+	border: 1px solid #BBDEFB;
+	padding: 24px;
+	margin: 16px 0;
+}
+
+/* 受信ボックス */
+.deletedView{
+	background-color: #E3F2FD;
+}
+
+.head{
+	margin: 5%;
+}
+.head button{
+	display:inline-box;
+}
+
+.table-padding{
+	margin-top: 50px;
+	margin: 30px;
+	padding: 20px;
+}
+
+.coat-setting{
+	margin: 4% auto;
+	max-width: 960px;
+	padding: 0 16px;
+}
+
+/*xxxxxxxxxxxxxxxx エラー処理  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*/
+div.error {
+  color: #C62828;
+  font-size: 12px;
+}
+
+/* フォームラベル */
+label{
+	width: auto;
+	min-width: 120px;
+	display: inline-block;
+	text-align: right;
+}
+
+.input-size input{
+	width: 100%;
+	max-width: 280px;
+}
+.input-number{
+	width: 30%;
+	max-width: 120px;
+}
+
+input.mr-2{
+	width: 100%;
+	max-width: 200px;
+}
+
+.top-margin{
+	padding-top: 3%;
+}
+.width-setting{
+	margin: 0 3%;
+}
+
+/* テーブル横スクロール */
+.table-responsive {
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+/* ==============================
+   レスポンシブ メディアクエリ
+   ============================== */
+
+/* タブレット以下 (768px) */
+@media (max-width: 768px) {
+	.coat-setting {
+		margin: 2% auto;
+		padding: 0 10px;
+	}
+	div.coat-view {
+		margin: 10px auto;
+	}
+	div.right-player {
+		border-left: none;
+		border-top: 3px solid white;
+	}
+	.right-column {
+		border-left: none;
+		border-top: 3px solid white;
+	}
+	.game-setting {
+		padding: 20px 16px;
+	}
+	.send {
+		max-width: 100%;
+	}
+	label {
+		min-width: 90px;
+	}
+}
+
+/* スマートフォン (576px以下) */
+@media (max-width: 576px) {
+	.display-1 {
+		margin-top: 30vh;
+		padding: 12px 16px;
+		letter-spacing: 2px;
+	}
+	.mode {
+		padding: 10px;
+	}
+	.mode .btn {
+		display: block;
+		width: 80%;
+		margin: 10px auto;
+	}
+	div.bg-success {
+		flex-direction: column;
+		margin: 10px;
+		padding: 16px;
+	}
+	.left-column, .right-column {
+		flex: 1 1 100%;
+		border-left: none;
+		border-top: 2px solid rgba(255,255,255,0.3);
+		font-size: 1.5rem;
+	}
+	div.left-player, div.right-player {
+		flex: 1 1 100%;
+		border-left: none;
+		border-top: 2px solid rgba(255,255,255,0.3);
+	}
+	.left-float, .right-float {
+		flex: 1 1 100%;
+	}
+	.score-set {
+		flex-direction: column;
+		align-items: center;
+	}
+	h1 {
+		font-size: 1.5rem;
+	}
+	.head {
+		margin: 3%;
+	}
+	.width-setting {
+		margin: 0 2%;
+	}
+	.top-margin {
+		padding-top: 5%;
+	}
+	table {
+		font-size: 0.85rem;
+	}
+}
+/* body { */
+/* 	background-color: #DDDDDD; */
+/* 	color: black; */
+/* 	font-family: ヒラギノ角ゴシック; */
+/* 	width: 70%; */
+/*     margin: 0 auto !important; */
+/* } */
+
+/* th { */
+/* 	width: 10% */
+/* } */
+
+/* .error { */
+/*   color: red; */
+/*   font-size: 12px; */
+/* } */
+
+/* /**真ん中に寄せる**/
+/* .middle { */
+/* 	display: flex; */
+/* 	justify-content: center; */
+/* 	align-items: center; */
+/* 	min-height: 100mm; */
+/* 	line-height: 1.5em; */
+/* } */
+
+/**TOP背景画像* */
+/* .bg-img { */
+/* 	background-image: url("/images/back.png"); */
+/* 	background-size: cover; */
+/* 	text-align: center; */
+/* } */
+
+/* /** ログイン画面 **/
+/* .login_form { */
+/* 	width: 400px; */
+/* 	height: 350px; */
+/* 	position: absolute; */
+/* 	top: 50%; */
+/* 	left: 50%; */
+/* 	transform: translate(-50%, -50%); */
+/* 	text-align: center; */
+/* 	border-radius: 10px; */
+/* 	background-color: white; */
+/* } */
+
+/* .complogin_form { */
+/* 	width: 400px; */
+/* 	height: 200px; */
+/* 	position: absolute; */
+/* 	top: 50%; */
+/* 	left: 50%; */
+/* 	transform: translate(-50%, -50%); */
+/* 	text-align: center; */
+/* 	border-radius: 10px; */
+/* 	background-color: white; */
+/* } */
+
+/* .middlelogin { */
+/* 	display: flex; */
+/* 	justify-content: center; */
+/* 	align-items: center; */
+/* 	min-height: 70mm; */
+/* 	line-height: 1.5em; */
+/* } */
+
+/* .base_input { */
+/* 	width: 250px; */
+/* 	height: 35px; */
+/* 	padding: 8px 10px; */
+/* 	border-radius: 10px; */
+/* } */
+
+/* .middlecomplogin { */
+/* 	display: flex; */
+/* 	justify-content: center; */
+/* 	align-items: center; */
+/* 	min-height: 50mm; */
+/* 	line-height: 1.5em; */
+/* } */
+
+/* /**後ろに白背景**/ 
+/* .compinfo { */
+/* 	width: 950px; */
+/* 	height: 550px; */
+/* 	position: absolute; */
+/* 	top: 50%; */
+/* 	left: 50%; */
+/* 	transform: translate(-50%, -50%); */
+/* 	text-align: center; */
+/* 	border-radius: 10px; */
+/* 	background-color: white; */
+/* } */
+/* .insertplayer{ */
+/* 	width: 750px; */
+/* 	height: 350px; */
+/* 	position: absolute; */
+/* 	top: 50%; */
+/* 	left: 50%; */
+/* 	transform: translate(-50%, -50%); */
+/* 	text-align: center; */
+/* 	border-radius: 10px; */
+/* 	background-color: white; */
+/* } */
+
+/* /**ボタン色**/ 
+/* .btn-orange-moon { */
+/*     background: #fc4a1a;  fallback for old browsers */
+/*     background: -webkit-linear-gradient(to right, #f7b733, #fc4a1a);  Chrome 10-25, Safari 5.1-6 */
+/*     background: linear-gradient(to right, #f7b733, #fc4a1a); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+/*     color: #fff; */
+/*     border: 3px solid #eee; */
+/* } */
+
+/* .btn-light-moon { */
+/*     background: #FFEFBA;  fallback for old browsers */
+/*     background: -webkit-linear-gradient(to right, #FFFFFF, #FFEFBA);  Chrome 10-25, Safari 5.1-6 */
+/*     background: linear-gradient(to right, #FFFFFF, #FFEFBA); W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+/*     color: #000; */
+/*     border: 3px solid #eee; */
+/* } */
+/* input { */
+/* 	width: 70%; */
+/* 	margin: 0; */
+/* } */
+
+/* table { */
+/*    text-center; */
+/*    border-radius; */
+/*    color: #66CC66; */
+/*    background-color: #FFFFFF; */
+/* } */
+
+/* div{ */
+/* 	font-weight: bold; */
+/* 	font-family: Inpact; */
+/* 	background-color: #ffffff; */
+/* } */
+
+/* div.a{ */
+/* 	margin:  */
+/* 	position: fixed top: 0 right:0; */
+	
+/* } */
+
+/* h1{ */
+/* 	font-family: Impact; */
+/* 	font-size: 30px; */
+/* } */
+
+/* #logout{ */
+/* 	font-family: Impact; */
+/* 	font-size: 30px; */
+/* 	padding-right: 5 10 10 5; */
+/* } */

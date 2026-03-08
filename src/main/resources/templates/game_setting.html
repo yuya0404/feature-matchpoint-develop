@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>試合設定</title>
+<link th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}"rel="stylesheet">
+ <link href="/css/yuya.css" rel="stylesheet">
+<style>
+.gs-teams-row {
+	display: flex;
+	align-items: stretch;
+	gap: 12px;
+	margin: 20px auto;
+	max-width: 520px;
+	justify-content: center;
+}
+.gs-vs {
+	display: flex;
+	align-items: center;
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: #fff;
+	flex-shrink: 0;
+}
+.gs-team-card {
+	flex: 1;
+	background: rgba(255,255,255,0.15);
+	border-radius: 14px;
+	padding: 14px 16px;
+	text-align: center;
+	border: 2px solid rgba(255,255,255,0.3);
+}
+.gs-team-label {
+	font-size: 0.75rem;
+	font-weight: bold;
+	letter-spacing: 2px;
+	padding: 3px 12px;
+	border-radius: 20px;
+	margin-bottom: 10px;
+	display: inline-block;
+}
+.gs-team-a .gs-team-label { background: #1976D2; color: #fff; }
+.gs-team-b .gs-team-label { background: #2E7D32; color: #fff; }
+.gs-player {
+	font-size: 1rem;
+	font-weight: bold;
+	color: #fff;
+	background: rgba(255,255,255,0.15);
+	border-radius: 20px;
+	padding: 8px 14px;
+	margin: 4px 0;
+}
+</style>
+</head>
+<body class="bg-gameSetting">
+<div th:insert="header"></div>
+	<div class="game-setting text-center" id="app">
+		<form action="server_setting" th:object="${game_info}" method="POST">
+			<div class="text-white" id="category">
+				試合番号
+				<input type="number" id="gameNo" v-model="gameNo" th:field="*{gameNo}" @change="teamSet()" min="1">
+			</div>
+
+			<div class="gs-teams-row">
+				<div class="gs-team-card gs-team-a">
+					<div class="gs-team-label">Team A</div>
+					<div class="gs-player">{{ teamAPlayer1 }}</div>
+					<div class="gs-player" v-if="teamAPlayer2">{{ teamAPlayer2 }}</div>
+				</div>
+				<div class="gs-vs">VS</div>
+				<div class="gs-team-card gs-team-b">
+					<div class="gs-team-label">Team B</div>
+					<div class="gs-player">{{ teamBPlayer1 }}</div>
+					<div class="gs-player" v-if="teamBPlayer2">{{ teamBPlayer2 }}</div>
+				</div>
+			</div>
+
+			<div class="text-white" id="category">点数</div>
+
+			<div class="text-white">
+				<label><input type="radio" value="11" th:field="*{maxPoint}">11点</label>
+				<label><input type="radio" value="21" th:field="*{maxPoint}">21点</label>
+				<label><input type="radio" value="31" th:field="*{maxPoint}">31点</label>
+			</div>
+
+			<div class="text-white" id="category">ゲーム数</div>
+
+			<div class="text-white">
+				<label><input type="radio" value="1" th:field="*{gameCount}">1ゲーム</label>
+				<label><input type="radio" value="3" th:field="*{gameCount}">3ゲーム</label>
+				<label><input type="radio" value="5" th:field="*{gameCount}">5ゲーム</label>
+			</div>
+
+			<div class="text-center">
+				<button class="btn bg-info" type="submit" name="server_setting">サーブ権設定</button>
+			</div>
+		</form>
+	</div>
+	
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="/js/game_mode.js"></script>
+</body>
+</html>
+

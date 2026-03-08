@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>大会一覧</title>
+<link th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}"
+	rel="stylesheet">
+<link href="/css/yuya.css" rel="stylesheet">
+</head>
+<body>
+	<nav class="navbar navbar-expand-sm navbar-dark sticky-top" style="background: linear-gradient(90deg, #0D47A1, #1565C0); box-shadow: 0 2px 8px rgba(13,71,161,0.4);">
+
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav4" aria-controls="navbarNav4"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<a href="tournament" class="navbar-brand"><img
+			src="./images/ゆうやロゴ1.png" class="login_logo">Match Point</a>
+		<div class="collapse navbar-collapse justify-content-end">
+			<ul class="navbar-nav">
+
+				<li class="nav-item active"><a class="nav-link" href="/logout">ログアウト</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class="width-setting">
+		<div class="top-margin">
+		<a href="/comp_info" class="btn btn-success">大会作成</a>
+		</div>
+	</div>
+	<div class="table-responsive">
+		<div class="text-center">
+			<h1>大会一覧</h1>
+
+			<table
+				class="table table-bordered table-striped mx-auto table-hover table-light">
+
+				<tr>
+					<th class="table-success">番号</th>
+					<th class="table-success">大会</th>
+					<th class="table-success">開催日</th>
+					<th class="table-success">トーナメント表へ</th>
+				</tr>
+
+				<tr th:each="complist : ${resultList}">
+					<td><span class="d-inline-block" tabindex="0"
+						data-toggle="tooltip" th:title="|${complist.memo}|">[[
+							${complist.compId} ]]</span></td>
+					<td><span class="d-inline-block" tabindex="0"
+						data-toggle="tooltip" th:title="|${complist.memo}|">[[
+							${complist.compName} ]]</span></td>
+					<td><span class="d-inline-block" tabindex="0"
+						data-toggle="tooltip" th:title="|${complist.memo}|">[[
+							${complist.compDate} ]]</span></td>
+					<td><a th:href="'/tournament?compId=' + ${complist.compId}"
+						class="btn-light-moon btn-lg btn-block">GO!</a></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>

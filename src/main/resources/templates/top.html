@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}" rel="stylesheet">
+<link href="/css/yuya.css" rel="stylesheet">
+<title>トップ</title>
+</head>
+
+<body class="bg-top">
+<div class="text-center">
+	<div class="login_form">
+		<h1 class="display-1">Match Point</h1>
+		<div class="mode">
+			<a href="/login" class="btn btn-primary btn-lg mr-4" style="min-width:160px; box-shadow:0 4px 12px rgba(13,71,161,0.4);">
+				&#9881; 運営モード
+			</a>
+			<a href="/comp_login" class="btn btn-success btn-lg" style="min-width:160px; box-shadow:0 4px 12px rgba(46,125,50,0.4);">
+				&#9654; プレイヤーモード
+			</a>
+		</div>
+	</div>
+</div>
+</body>
+</html>

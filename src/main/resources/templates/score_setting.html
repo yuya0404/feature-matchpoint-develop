@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>スコア登録</title>
+<link th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}"
+	rel="stylesheet">
+<link href="/css/yuya.css" rel="stylesheet">
+</head>
+<body class="bg-score-setting">
+<div th:insert="header"></div>
+<div class="coat-setting">
+	<form action="game_set_result" th:object="${score_setting}"
+		method="POST">
+		<input type="hidden" id="playerA" th:field="*{playerA}"> 
+		<input type="hidden" id="playerB" th:field="*{playerB}"> 
+		<input type="hidden" id="playerC" th:field="*{playerC}"> 
+		<input type="hidden" id="playerD" th:field="*{playerD}"> 
+		<input type="hidden" id="server" th:field="*{server}"> 
+		<input type="hidden" id="team1_point" th:field="*{team1Point}"> 
+		<input type="hidden" id="team2_point" th:field="*{team2Point}">
+		<input type="hidden" id="max_point" th:field="*{maxPoint}">
+
+		<div class="coat-view text-white">
+			<div class="left-player">
+				<p id="playerAtext">A</p>
+				<p id="playerBtext">B</p>
+			</div>
+
+			<div class="right-player">
+				<p id="playerCtext">C</p>
+				<p id="playerDtext">D</p>
+			</div>
+
+			サーバー: <select id="server_select" th:field="*{server}"
+				onChange="serverChange()">
+				<option th:text="*{playerA}" value="playerA"></option>
+				<option th:text="*{playerB}" value="playerB"></option>
+				<option th:text="*{playerC}" value="playerC"></option>
+				<option th:text="*{playerD}" value="playerD"></option>
+			</select>
+		</div>
+
+		<div class="score-set text-center">
+			<table>
+				<tr th:each="score : ${score_list}">
+					<td th:text="${score}"></td>
+				</tr>
+			</table>
+			<div class="left-float">
+				<div id="team1_point_text"></div>
+				<div>
+					<button type="button" id="team1tasu" onClick="serverSet(1,'tasu')"
+						class="btn btn-danger">+</button>
+					<button type="button" onClick="serverSet(1,'hiku')"
+						class=" btn btn-primary">-</button>
+				</div>
+			</div>
+
+			<div class="right-float">
+				<div id="team2_point_text"></div>
+				<div>
+					<button type="button" id="team2tasu" onClick="serverSet(2,'tasu')"
+						class=" btn btn-danger">+</button>
+					<button type="button" onClick="serverSet(2,'hiku')"
+						class=" btn btn-primary">-</button>
+				</div>
+			</div>
+
+			<button type="submit">ゲーム終了</button>
+		</div>
+	</form>
+	</div>
+	<script src="/js/score_setting.js"></script>
+</body>
+</html>

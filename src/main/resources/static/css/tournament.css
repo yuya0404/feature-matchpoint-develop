@@ -1,0 +1,282 @@
+@charset "UTF-8";
+
+body {
+	font-size: 1rem;
+	background-color: #E8F4FD;
+}
+
+/* ===== 外枠 ===== */
+.tournament {
+	margin: 3% 4%;
+	background: #fff;
+	padding: 28px 32px;
+	border-radius: 14px;
+	box-shadow: 0 4px 24px rgba(13,71,161,0.10);
+	border: 1px solid #BBDEFB;
+}
+
+/* ===== ページタイトル ===== */
+.t-title {
+	color: #0D47A1;
+	font-weight: bold;
+	font-size: 1.5rem;
+	margin: 20px 0 24px;
+	padding-bottom: 10px;
+	border-bottom: 3px solid #42A5F5;
+	display: inline-block;
+}
+
+/* ===== ボタンバー ===== */
+.t-toolbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+.t-toolbar-left {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+.t-toolbar-right {
+	display: flex;
+	gap: 8px;
+}
+
+.t-btn {
+	padding: 8px 16px;
+	border-radius: 8px;
+	font-weight: bold;
+	font-size: 0.9rem;
+	border: none;
+	cursor: pointer;
+	transition: opacity 0.2s, transform 0.1s;
+	color: #fff;
+}
+.t-btn:hover {
+	opacity: 0.85;
+	transform: translateY(-1px);
+}
+.t-btn-blue  { background: linear-gradient(135deg, #42A5F5, #1976D2); }
+.t-btn-navy  { background: linear-gradient(135deg, #1565C0, #0D47A1); }
+.t-btn-green { background: linear-gradient(135deg, #43A047, #2E7D32); }
+.t-btn-outline {
+	background: transparent;
+	border: 2px solid #1976D2;
+	color: #1976D2;
+}
+.t-btn-outline:hover {
+	background: #E3F2FD;
+}
+
+/* ===== ブラケットセクション ===== */
+.t-bracket-section {
+	margin-bottom: 32px;
+}
+.t-bracket-header {
+	background: linear-gradient(90deg, #0D47A1, #1976D2);
+	color: #fff;
+	font-weight: bold;
+	font-size: 1rem;
+	padding: 10px 20px;
+	border-radius: 8px 8px 0 0;
+	letter-spacing: 1px;
+}
+.t-bracket-body {
+	background: #F0F7FF;
+	border: 1px solid #BBDEFB;
+	border-top: none;
+	border-radius: 0 0 8px 8px;
+	padding: 24px 16px;
+	overflow-x: auto;
+}
+
+/* ===== 選手カード ===== */
+.t-player-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-width: 120px;
+	padding: 4px 8px;
+	gap: 4px;
+}
+.t-player-name {
+	font-size: 0.9rem;
+	font-weight: bold;
+	white-space: nowrap;
+	display: block;
+}
+
+/* ===== 試合ボタン ===== */
+.t-game-btn {
+	display: block;
+	width: 100%;
+	margin-top: 4px;
+	padding: 5px 8px;
+	background: linear-gradient(135deg, #42A5F5, #1976D2);
+	color: #fff;
+	border: none;
+	border-radius: 0 0 6px 6px;
+	font-size: 0.8rem;
+	font-weight: bold;
+	cursor: pointer;
+	transition: opacity 0.2s;
+	white-space: nowrap;
+}
+.t-game-btn:hover {
+	opacity: 0.85;
+}
+
+/* ===== vue-tournament-bracket スタイル上書き ===== */
+.vtb-item {
+	margin: auto;
+}
+.vtb-item-parent {
+	position: relative;
+	margin-left: 40px;
+	display: flex;
+	align-items: center;
+}
+.vtb-item-players {
+	flex-direction: column;
+	background: #fff;
+	border: 2px solid #BBDEFB;
+	border-radius: 8px;
+	margin: 0;
+	padding: 0;
+	color: #0D47A1;
+	min-width: 140px;
+	box-shadow: 0 2px 8px rgba(13,71,161,0.08);
+	overflow: hidden;
+}
+.vtb-item-players .vtb-player {
+	padding: 10px 14px;
+	font-size: 0.9rem;
+	font-weight: bold;
+	border-bottom: 1px solid #E3F2FD;
+}
+.vtb-item-players .vtb-player:last-of-type {
+	border-bottom: none;
+}
+
+/* 勝者・敗者 */
+.vtb-item-players .winner {
+	background: linear-gradient(90deg, #E8F5E9, #C8E6C9);
+	color: #1B5E20;
+}
+.vtb-item-players .defeated {
+	background: #FFEBEE;
+	color: #B71C1C;
+}
+.vtb-item-players .winner.highlight {
+	background: linear-gradient(90deg, #A5D6A7, #66BB6A);
+	color: #1B5E20;
+}
+.vtb-item-players .defeated.highlight {
+	background: #EF9A9A;
+	color: #B71C1C;
+}
+
+/* 接続線 */
+.vtb-item-parent:after {
+	position: absolute;
+	content: "";
+	width: 30px;
+	height: 3px;
+	left: 0;
+	top: 50%;
+	background: linear-gradient(90deg, #42A5F5, #1976D2);
+	transform: translateX(-100%);
+	border-radius: 2px;
+}
+.vtb-item-children {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.vtb-item-child {
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-end;
+	margin-top: 12px;
+	margin-bottom: 12px;
+	position: relative;
+}
+.vtb-item-child:before {
+	content: "";
+	position: absolute;
+	background: linear-gradient(90deg, #1976D2, #42A5F5);
+	right: 0;
+	top: 50%;
+	transform: translateX(100%);
+	width: 30px;
+	height: 3px;
+	border-radius: 2px;
+}
+.vtb-player1, .vtb-player2 {
+	margin: 8px;
+	background: linear-gradient(135deg, #1976D2, #0D47A1);
+	color: #fff;
+	width: 85%;
+	text-align: center;
+	border-radius: 8px;
+	padding: 6px;
+	font-weight: bold;
+}
+.player_selected {
+	margin: 0;
+	padding: 5px;
+}
+.vtb-item-child:after {
+	content: "";
+	position: absolute;
+	background: linear-gradient(180deg, #42A5F5, #1976D2);
+	right: -30px;
+	height: calc(50% + 24px);
+	width: 3px;
+	top: 50%;
+	border-radius: 2px;
+}
+.vtb-item-child:last-child:after {
+	transform: translateY(-100%);
+}
+.vtb-item-child:only-child:after {
+	display: none;
+}
+
+/* ===== レスポンシブ ===== */
+@media (max-width: 768px) {
+	.tournament {
+		margin: 2%;
+		padding: 16px;
+	}
+	.t-bracket-body {
+		padding: 16px 8px;
+	}
+	#app {
+		overflow-x: auto;
+	}
+}
+
+@media (max-width: 576px) {
+	.tournament {
+		margin: 1%;
+		padding: 12px;
+	}
+	.t-toolbar {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+	.t-toolbar-right {
+		align-self: flex-end;
+	}
+	.t-btn {
+		font-size: 0.8rem;
+		padding: 6px 12px;
+	}
+	.vtb-item-players {
+		min-width: 110px;
+	}
+}

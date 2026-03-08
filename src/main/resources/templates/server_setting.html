@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>立ち位置・サーブ権設定</title>
+<link th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}" rel="stylesheet">
+<link href="/css/yuya.css" rel="stylesheet">
+<style>
+/* ===== サーブ権設定ページ専用スタイル ===== */
+.ss-page {
+	max-width: 720px;
+	margin: 32px auto;
+	padding: 0 16px;
+}
+.ss-heading {
+	text-align: center;
+	margin-bottom: 24px;
+}
+.ss-heading h2 {
+	font-size: 1.4rem;
+	font-weight: bold;
+	color: #0D47A1;
+	margin: 0;
+}
+.ss-heading p {
+	color: #555;
+	font-size: 0.9rem;
+	margin: 4px 0 0;
+}
+
+/* ===== コート ===== */
+.ss-court {
+	display: flex;
+	align-items: stretch;
+	background: linear-gradient(135deg, #E3F2FD, #E8F5E9);
+	border: 2px solid #BBDEFB;
+	border-radius: 16px;
+	overflow: hidden;
+	box-shadow: 0 6px 24px rgba(13,71,161,0.12);
+	min-height: 260px;
+}
+
+/* チームパネル */
+.ss-team {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-around;
+	padding: 24px 16px;
+	gap: 12px;
+}
+.ss-team-left  { background: linear-gradient(160deg, #BBDEFB 0%, #E3F2FD 100%); }
+.ss-team-right { background: linear-gradient(200deg, #C8E6C9 0%, #E8F5E9 100%); }
+
+.ss-team-badge {
+	font-size: 0.75rem;
+	font-weight: bold;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	padding: 3px 12px;
+	border-radius: 20px;
+	margin-bottom: 4px;
+}
+.ss-team-left  .ss-team-badge { background: #1976D2; color: #fff; }
+.ss-team-right .ss-team-badge { background: #2E7D32; color: #fff; }
+
+/* プレイヤーカードラッパー */
+.ss-player-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6px;
+	width: 100%;
+	max-width: 190px;
+}
+.ss-pos-badge {
+	font-size: 0.7rem;
+	font-weight: bold;
+	padding: 3px 14px;
+	border-radius: 20px;
+	letter-spacing: 2px;
+}
+.ss-team-left  .ss-pos-badge { background: #1976D2; color: #fff; }
+.ss-team-right .ss-pos-badge { background: #2E7D32; color: #fff; }
+
+/* プレイヤーカード */
+.ss-player {
+	background: #fff;
+	border-radius: 24px;
+	padding: 16px 28px;
+	font-size: 1.15rem;
+	font-weight: bold;
+	color: #1a1a2e;
+	min-width: 150px;
+	text-align: center;
+	box-shadow: 0 4px 18px rgba(0,0,0,0.10);
+	border-top: 4px solid transparent;
+	transition: transform 0.15s, box-shadow 0.15s;
+	width: 100%;
+	box-sizing: border-box;
+}
+.ss-team-left  .ss-player { border-top-color: #1976D2; }
+.ss-team-right .ss-player { border-top-color: #2E7D32; }
+.ss-player:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(0,0,0,0.13); }
+
+.ss-player.server-active {
+	border-top-color: #E53935 !important;
+	color: #C62828;
+	background: linear-gradient(135deg, #FFF8F8, #FFEBEE);
+	box-shadow: 0 4px 20px rgba(229,57,53,0.22);
+}
+
+/* 入れ替えボタン */
+.ss-swap-btn {
+	background: rgba(255,255,255,0.7);
+	border: 1.5px solid #BBDEFB;
+	border-radius: 20px;
+	padding: 5px 16px;
+	font-size: 0.8rem;
+	color: #1565C0;
+	cursor: pointer;
+	transition: background 0.15s, transform 0.1s;
+	font-weight: bold;
+}
+.ss-swap-btn:hover {
+	background: #fff;
+	transform: scale(1.05);
+}
+
+/* ネット */
+.ss-net {
+	width: 28px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(180deg, #1976D2 0%, #0D47A1 100%);
+	position: relative;
+	flex-shrink: 0;
+}
+.ss-net-label {
+	writing-mode: vertical-rl;
+	text-orientation: mixed;
+	color: rgba(255,255,255,0.85);
+	font-size: 0.65rem;
+	font-weight: bold;
+	letter-spacing: 3px;
+}
+.ss-net::before,
+.ss-net::after {
+	content: "";
+	position: absolute;
+	width: 6px;
+	height: 6px;
+	background: #fff;
+	border-radius: 50%;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.ss-net::before { top: 12px; }
+.ss-net::after  { bottom: 12px; }
+
+/* ===== サーブ権選択 ===== */
+.ss-serve-section {
+	margin-top: 28px;
+	background: #fff;
+	border-radius: 14px;
+	padding: 20px 24px;
+	box-shadow: 0 4px 16px rgba(13,71,161,0.08);
+	border: 1px solid #E3F2FD;
+}
+.ss-serve-section h3 {
+	font-size: 1rem;
+	font-weight: bold;
+	color: #1565C0;
+	margin-bottom: 14px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+.ss-serve-options {
+	display: flex;
+	gap: 12px;
+}
+.ss-serve-label {
+	flex: 1;
+	cursor: pointer;
+	width: auto;
+	text-align: left;
+}
+.ss-serve-label input[type="radio"] {
+	display: none;
+}
+.ss-serve-card {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 14px 12px;
+	border-radius: 10px;
+	border: 2px solid #BBDEFB;
+	background: #F8FBFF;
+	font-weight: bold;
+	font-size: 0.95rem;
+	color: #555;
+	transition: all 0.15s;
+	text-align: center;
+}
+.ss-serve-label.selected-a .ss-serve-card {
+	border-color: #1976D2;
+	background: #E3F2FD;
+	color: #0D47A1;
+}
+.ss-serve-label.selected-b .ss-serve-card {
+	border-color: #2E7D32;
+	background: #E8F5E9;
+	color: #1B5E20;
+}
+.ss-serve-card:hover {
+	border-color: #90CAF9;
+	background: #F0F7FF;
+}
+
+/* ===== 試合開始ボタン ===== */
+.ss-start {
+	margin-top: 28px;
+	text-align: center;
+}
+.ss-start-btn {
+	background: linear-gradient(135deg, #43A047, #1B5E20);
+	color: #fff;
+	border: none;
+	border-radius: 50px;
+	padding: 14px 60px;
+	font-size: 1.2rem;
+	font-weight: bold;
+	cursor: pointer;
+	box-shadow: 0 6px 20px rgba(46,125,50,0.35);
+	transition: opacity 0.2s, transform 0.15s;
+	letter-spacing: 2px;
+}
+.ss-start-btn:hover {
+	opacity: 0.9;
+	transform: translateY(-2px);
+}
+
+/* ===== レスポンシブ ===== */
+@media (max-width: 576px) {
+	.ss-court {
+		flex-direction: column;
+		min-height: auto;
+	}
+	.ss-net {
+		width: 100%;
+		height: 20px;
+		flex-direction: row;
+	}
+	.ss-net-label { writing-mode: horizontal-tb; letter-spacing: 6px; }
+	.ss-net::before { top: 50%; left: 12px; transform: translateY(-50%); }
+	.ss-net::after  { top: 50%; right: 12px; left: auto; transform: translateY(-50%); }
+	.ss-serve-options { flex-direction: column; }
+	.ss-start-btn { padding: 12px 40px; font-size: 1rem; }
+}
+</style>
+</head>
+<body>
+	<div th:insert="header"></div>
+
+	<form action="score_setting" th:object="${score_setting}" method="POST">
+		<input type="hidden" id="playerA" th:field="*{playerA}">
+		<input type="hidden" id="playerB" th:field="*{playerB}">
+		<input type="hidden" id="playerC" th:field="*{playerC}">
+		<input type="hidden" id="playerD" th:field="*{playerD}">
+
+		<div class="ss-page">
+			<!-- タイトル -->
+			<div class="ss-heading">
+				<h2>&#127996; 立ち位置・サーブ権の設定</h2>
+				<p>選手の位置を確認し、サーブ権チームを選んでください</p>
+			</div>
+
+			<!-- コート -->
+			<div class="ss-court">
+				<!-- チームA（左） -->
+				<div class="ss-team ss-team-left">
+					<div class="ss-team-badge">Team A</div>
+					<div class="ss-player-wrapper">
+						<span class="ss-pos-badge">前衛</span>
+						<div class="ss-player" id="playerAtext">A</div>
+					</div>
+					<button type="button" class="ss-swap-btn" onclick="changeLeft()">&#8645; 前後を入替</button>
+					<div class="ss-player-wrapper">
+						<span class="ss-pos-badge">後衛</span>
+						<div class="ss-player" id="playerBtext">B</div>
+					</div>
+				</div>
+
+				<!-- ネット -->
+				<div class="ss-net">
+					<span class="ss-net-label">NET</span>
+				</div>
+
+				<!-- チームB（右） -->
+				<div class="ss-team ss-team-right">
+					<div class="ss-team-badge">Team B</div>
+					<div class="ss-player-wrapper">
+						<span class="ss-pos-badge">前衛</span>
+						<div class="ss-player" id="playerCtext">C</div>
+					</div>
+					<button type="button" class="ss-swap-btn" onclick="changeRight()">&#8645; 前後を入替</button>
+					<div class="ss-player-wrapper">
+						<span class="ss-pos-badge">後衛</span>
+						<div class="ss-player" id="playerDtext">D</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- サーブ権 -->
+			<div class="ss-serve-section">
+				<h3>&#127992; サーブ権チームを選択</h3>
+				<div class="ss-serve-options">
+					<label class="ss-serve-label" id="serve-label-a" onclick="serverSet(1)">
+						<input type="radio" value="playerB" th:field="*{server}">
+						<span class="ss-serve-card">&#129399; Team A サーブ</span>
+					</label>
+					<label class="ss-serve-label" id="serve-label-b" onclick="serverSet(2)">
+						<input type="radio" value="playerC" th:field="*{server}">
+						<span class="ss-serve-card">&#129399; Team B サーブ</span>
+					</label>
+				</div>
+			</div>
+
+			<!-- 試合開始 -->
+			<div class="ss-start">
+				<button type="submit" class="ss-start-btn">&#9654; 試合開始</button>
+			</div>
+		</div>
+	</form>
+
+	<script src="/js/server_setting.js"></script>
+</body>
+</html>

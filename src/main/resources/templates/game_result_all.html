@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>試合結果受信box</title>
+<link th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}"
+	rel="stylesheet">
+<link href="/css/yuya.css" rel="stylesheet">
+</head>
+<body>
+	<div th:insert="header"></div>
+	<div class="width-setting">
+	<div class="top-margin">
+	<div class="text-right">
+		<button class="text-white btn-primary" type="button" onclick="location.href='tournament'">戻る</button>
+	</div>
+	</div>
+	<div class="text-center">
+		<p th:text="${msg}">MSG</p>
+	</div>
+
+		<div class="search_tool text-center">
+			<form action="game_result_search" th:object="${comp_detail}"
+				class=" m-2">
+				<input type="hidden" th:field="*{recordStatus}"> <input
+					type="text" name="keyword" placeholder="キーワード検索">
+				<button type="submit">検索</button>
+			</form>
+
+		</div>
+
+			<form action="sort" th:object="${comp_detail}" class=" m-2">
+				<input type="hidden" th:field="*{recordStatus}"> <select
+					class="base-text" name="orderBy" onchange="submit(this.form)">
+					<option value="normal">並び替え</option>
+					<option value="record_date">登録日時</option>
+					<option value="game_no">試合番号</option>
+					<option value="coat_no">コート番号</option>
+					<option value="tournament_no">トーナメント番号</option>
+				</select>
+			</form>
+
+			<div class="btn-toolbar">
+				<div class="btn-group">
+					<form action="game_result_all" th:object="${comp_detail}"
+						class=" m-1">
+						<input type="hidden" value="0"> 
+						<input type="submit" value="未登録" class="btn btn-outline-secondary">
+					</form>
+					<form action="game_result_registered" th:object="${comp_detail}"
+						class=" m-1">
+						<input type="hidden" value="1"> 
+						<input type="submit" value="登録済み" class="btn btn-outline-secondary">
+					</form>
+					<form action="game_result_deleted" th:object="${comp_detail}" class=" m-1">
+						<input type="hidden" value="2"> 
+						<input type="submit" value="削除済み" class="btn btn-outline-secondary">
+					</form>
+				</div>
+			</div>
+		
+	</div>
+	<div class="text-center my-5">
+	<table class="table table-bordered table-striped mx-auto table-hover table-light text-center"
+		border="1">
+		<tr>
+			<th class="table-success">日時</th>
+			<th class="table-success">試合番号</th>
+			<th class="table-success">コート番号</th>
+			<th class="table-success">審判名</th>
+			<th class="table-success">トーナメント番号</th>
+		</tr>
+		<tr th:each="result : ${list}" >
+			<td>[[${result.recordDate}]]</td>
+			<td><a class="btn btn-info" role="button"  th:href="'/game_result_final?gameInfoId=' + ${result.gameInfoId}">第[[${result.gameNo}]]試合</a></td>
+			<td>[[${result.coatNo}]]</td>
+			<td>[[${result.judgeName}]]</td>
+			<td>[[${result.tournamentNo}]]</td>
+		</tr>
+	</table>
+	</div>
+</body>
+
+</html>

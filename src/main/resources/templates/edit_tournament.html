@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-tournament-bracket@2.1.2/dist/vue-tournament-bracket.umd.min.js"></script>
+	<link href="/css/tournament.css" rel="stylesheet">
+	<link th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}" rel="stylesheet">
+	<title>トーナメント表編集</title>
+	
+</head>
+<body>
+	<div th:insert="header"></div>
+	<div class="tournament">
+	<button type="button" onclick="location.href='save_tournament'" class="text-white bg-success btn">編集完了</button>
+
+	<div class="text-right">
+	<button type="button" onclick="location.href='all_player'" class="text-white btn-primary">戻る</button>
+	</div>
+	<div id="app">
+        <h4 id="msg"></h4>
+        <details v-for="tournament in tournaments">
+                <summary>トーナメント: {{ tournament.tournamentNo }}</summary>
+            <bracket :rounds="tournament.rounds">
+                <template #player="{ player }">
+                    <div
+                    @drop="dropList($event, player.id)"
+                    @dragover.prevent
+                    @dragenter.prevent>
+                        <div
+                        draggable
+                        @dragstart="dragList($event, player.id)">
+                            <b>
+                                {{ player.name }}
+                            </b>
+                        </div>
+                    </div>
+                </template>
+                <template  #player-extension-bottom = " {match} ">
+                    <input type="hidden" :value="match.gameNo" readonly>
+                    <b style="background-color: gray;">試合番号：{{ match.gameNo }}</b>
+                </template>
+            </bracket>
+        </details>
+	</div>
+    <script th:src="@{js/edit_tournament.js}"></script>
+	<!-- <button type="button" @click="save">セーブ</button> -->
+
+
+</div>
+</body>
+</html>

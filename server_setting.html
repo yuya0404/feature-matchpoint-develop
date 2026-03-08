@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>サーブ権設定</title>
+</head>
+<body>
+	<form action="score_setting" th:object="${score_setting}" method="POST">
+		<input type="text" th:filde="playerA">
+		<input type="text" th:filde="playerB">
+		<input type="text" th:filde="playerC">
+		<input type="text" th:filde="playerD">
+		<button type="submit">試合開始</button>
+	</form>
+</body>
+</html>

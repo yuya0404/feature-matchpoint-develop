@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>試合結果受信box</title>
+<link th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}"rel="stylesheet">
+<link href="/css/yuya.css" rel="stylesheet">
+</head>
+<body>
+	<div th:insert="header"></div>
+	<div class="coat-setting">
+	<form action="tournament_register" th:object="${comp_detail}"
+		method="POST">
+		<div class="text-right">
+		<button class="text-white btn-primary" type="button" onclick="location.href='game_result_all'">戻る</button>
+		</div>
+		<!-- 		<input type="text" th:field="*{playerA}">
+		<input type="text" th:field="*{playerB}">
+		<input type="text" th:field="*{playerC}">
+		<input type="text" th:field="*{playerD}"> -->
+
+		<input type="hidden" th:field ="*{gameInfoId}">
+		<input type="hidden" th:field ="*{gameNo}">
+		<input type="hidden" th:field ="*{recordStatus}">
+		<div class="coat-view text-white">
+			<div class="left-player">
+				<p th:text="*{teamAPlayer1}">A</p>
+				<p th:text="*{teamAPlayer2}">B</p>
+			</div>
+
+			<div class="right-player">
+				<p th:text="*{teamBPlayer1}">C</p>
+				<p th:text="*{teamBPlayer2}">D</p>
+			</div>
+			<div th:text="${set}">現在のゲーム数/総ゲーム数</div>
+		</div>
+
+		<div class="text-center">
+			<div class="left-float">
+				<div th:text="${setNumA} + 'セット'">取得ゲーム数</div>
+			</div>
+			<div class="right-float">
+				<div th:text="${setNumB} + 'セット'">取得ゲーム数</div>
+			</div>
+
+			<table class="table-padding">
+				<tr th:each="score : ${score_list}">
+					<td th:text="${score}"></td>
+				</tr>
+			</table>
+			<button type="submit" class="text-white bg-success btn" name="register">トーナメントへ登録</button>
+			<button type="submit" class="text-white bg-success btn" name="delete">削除</button>
+		</div>
+
+		
+	</form>
+	</div>
+</body>
+</html>

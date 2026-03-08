@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ゲーム結果</title>
+<link th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}"
+	rel="stylesheet">
+<link href="/css/yuya.css" rel="stylesheet">
+</head>
+<body>
+<div th:insert="header"></div>
+<div class="coat-setting">
+	<form action="game_result" th:object="${score_setting}" method="POST">
+		<input type="hidden" th:field="*{playerA}"> <input
+			type="hidden" th:field="*{playerB}"> <input type="hidden"
+			th:field="*{playerC}"> <input type="hidden"
+			th:field="*{playerD}">
+
+
+
+		<div class="coat-view text-white">
+
+			<div class="left-player">
+				<p th:text="${playerA}">A</p>
+				<p th:text="${playerB}">B</p>
+			</div>
+
+			<div class="right-player">
+				<p th:text="${playerC}">C</p>
+				<p th:text="${playerD}">D</p>
+			</div>
+			<p>現在のセット数</p>
+			<div th:text="${set}">現在のゲーム数/総ゲーム数</div>
+		</div>
+
+		<div class="text-center">
+		<table>
+				<tr th:each="score : ${score_list}">
+					<td th:text="${score}"></td>
+				</tr>
+			</table>
+			<div class="left-float">
+				<div th:text="${setNumA}">取得ゲーム数</div>
+			</div>
+			
+			<div class="right-float">
+				<div th:text="${setNumB}">取得ゲーム数</div>
+			</div>
+			<button type="submit" th:text="${btn}" name="next">次のゲームへ</button>
+		</div>
+		
+	</form>
+	</div>
+</body>
+</html>

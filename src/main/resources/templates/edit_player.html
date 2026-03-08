@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>選手編集</title>
+<link th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}" rel="stylesheet">
+<link href="/css/yuya.css" rel="stylesheet">
+<link href="/css/shoma.css" rel="stylesheet">
+</head>
+
+<body>
+	<div th:insert="header"></div>
+	<div class="insertplayer">
+		<div class="text-right">
+
+		<button type="button" onclick="location.href='all_player'" class="btn btn-primary">戻る</button>
+		
+		<form action="edit_player" th:object="${edit_player}">
+		
+			<div class="text-center input-size">
+				<div class="form-group mt-1">
+				<label>プレイヤー1:</label>
+				<input type="text"  th:field="*{playerAName}">
+				<div class="error" th:each="error: ${#fields.errors('playerAName')}">
+					[[${error} ]]
+				</div>
+			</div>
+			
+			<div class="form-group mt-4">
+				<label>プレイヤー2:</label>
+				<input type="text" th:field="*{playerBName}">
+				<div class="error" th:each="error: ${#fields.errors('playerBName')}">
+					[[${error} ]]
+				</div>
+			</div>
+			
+			<div class="form-group mt-4">
+				<label>トーナメント番号:</label>
+				<input type="number" id="tournamentNo" th:field="*{tournamentNo}" 
+					max="10" min="1" placeholder="数値を入力(1～10)" 
+					onChange="tournamentNoCheck()" class="input-number">
+				<div class="error" th:each="error: ${#fields.errors('tournamentNo')}">
+					[[${error} ]]
+				</div>
+				<div class="error" th:text="${errorMsg}"></div>
+			</div>
+	
+			<div th:if="${session.tournamentEditStatus == 0}">
+			<input type="hidden"  th:field="*{teamId}">
+			<button type="submit" name="edit" value="edit" class="btn btn-primary">更新</button>
+			<button type="submit" name ="delete" value="delete" class="btn btn-primary">削除</button>
+			</div>
+			</div>
+		</form>
+
+		</div>
+	</div>
+	<script>
+		function tournamentNoCheck(){
+			const tournamentNo = document.getElementById('tournamentNo')
+			if(tournamentNo.value > 10){
+				tournamentNo.value = 10
+			}
+		}
+	</script>
+</body>
+</html>

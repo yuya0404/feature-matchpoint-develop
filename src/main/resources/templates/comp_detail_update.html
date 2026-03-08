@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>大会編集</title>
+<link th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}"rel="stylesheet">
+<link href="/css/shoma.css" rel="stylesheet">
+</head>
+
+<body>
+	<div th:insert="header"></div>
+<div class="compinfo">	
+	<form action="comp_detail_update" th:object="${comp_detail}" method="POST">
+	
+		<div class="text-right">
+		<button type="submit" name="back" class="btn btn-primary">戻る</button>
+		</div>
+		
+		<div class="text-center input-size">
+		<div>
+			<input type="hidden" th:field="*{compId}">
+		</div>
+		<div class="form-group">
+			<label>大会名:</label>
+			<input type="text" th:field="*{compName}">
+			<span class="error" th:each="error: ${#fields.errors('compName')}">
+				[[ ${error} ]]
+			</span>
+		</div>
+
+		<div class="form-group">
+			<label>開催日:</label>
+			<input type="date" th:field="*{compDate}">
+			<span class="error" th:each="error: ${#fields.errors('compDate')}">
+				[[ ${error} ]]
+			</span>
+		</div>
+
+		<div class="form-group">
+			<label>場所:</label>
+			<input type="text" th:field="*{compPlace}">
+			<span class="error" th:each="error: ${#fields.errors('compPlace')}">
+				[[ ${error} ]]
+			</span>
+		</div>
+
+		<div class="form-group">
+			<label>大会ログインID:</label>
+			<input type="text" th:field="*{compLoginId}">
+			<span class="error" th:each="error: ${#fields.errors('compLoginId')}">
+				[[ ${error} ]]
+			</span>
+			<span class="error" th:text="${errorMsg}"></span>
+		</div>
+
+		<div class="form-group">
+			<label>トーナメント数:</label>
+			<input type="number" id="tournamentCount" th:field="*{tournamentCount}"
+					max="10" min="1" placeholder="最大10まで" onChange="tournamentCountCheck()">
+			<span class="error" th:each="error: ${#fields.errors('tournamentCount')}">
+				[[ ${error} ]]
+			</span>
+		</div>
+
+		<div class="form-group">
+			<label>大会概要:</label> <input type="text" th:field="*{memo}">
+		</div>
+		<button type="submit" name="completion" class="btn btn-primary my-5">完了</button>
+		
+		</div>
+	</form>
+	
+	</div>
+
+	
+	<script>
+		function tournamentCountCheck(){
+			const tournamentCount = document.getElementById('tournamentCount')
+			
+			if(tournamentCount.value > 10){
+				tournamentCount.value = 10
+			}
+		}
+	</script>
+</body>
+</html>

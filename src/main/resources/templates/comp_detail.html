@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>大会詳細</title>
+<link th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}"
+	rel="stylesheet">
+<link href="/css/shoma.css" rel="stylesheet">
+<link href="/css/yuya.css" rel="stylesheet">
+</head>
+
+<body>
+	<div th:insert="header"></div>
+
+	<div class="compinfo input-size">
+		<form action="comp_detail_edit" th:object="${comp_detail}"
+			method="POST">
+			<div class="width-setting">
+				<div class="text-right">
+					<button type="button" onclick="location.href='tournament'"
+						class="btn btn-primary">戻る</button>
+				</div>
+			</div>
+			<div class="text-center input-size">
+				<div>
+					<input type="hidden" th:field="*{compId}">
+				</div>
+
+				<div class="form-group">
+					<label>大会名:</label> <input
+						type="text" th:field="*{compName}" readonly>
+				</div>
+
+				<div class="form-group">
+					<label>開催日:</label> <input
+						type="text" th:field="*{compDate}" readonly>
+				</div>
+
+				<div class="form-group">
+					<label>場所:</label> <input
+						type="text" th:field="*{compPlace}" readonly>
+				</div>
+
+				<div class="form-group">
+					<label>大会ログインID:</label> <input
+						type="text" th:field="*{compLoginId}" readonly>
+				</div>
+
+				<div class="form-group">
+					<label>トーナメント数:</label> <input
+						type="number" th:field="*{tournamentCount}" class="input-number" readonly>
+				</div>
+
+				<div class="form-group">
+					<label>試合形式:</label> <span
+						th:switch="*{gameType}"> <input th:case="1" th:value="シングル"
+						readonly> <input th:case="2" th:value="ダブルス" readonly>
+					</span>
+				</div>
+				<!-- 				<div class="form-group"> -->
+				<!-- 					<label class="col-sm-2 control-label">試合形式:</label>  -->
+				<!-- 					<input type="hidden" th:field="*{gameTypeStr}" readonly>  -->
+				<!-- 					<span th:switch="*{gameType}">  -->
+				<!-- 					<input type ="text" th:case="1" th:value="シングル" readonly>  -->
+				<!-- 					<input type ="text" th:case="2" th:value="ダブルス" readonly> -->
+				<!-- 					</span> -->
+				<!-- 				</div> -->
+			</div>
+			<div>
+				<label>大会概要:</label> <input type="text" th:field="*{memo}" readonly>
+			</div>
+			<div th:if="${session.loginId}">
+				<!-- マージ時に使用する　th:if="${loginId != null}"  -->
+				<button type="button" onclick="openModal()" class="btn-primary my-5">削除</button>
+				<button type="submit" class="btn-primary">編集</button>
+				<div id="modal">
+					<p class="modal_message">削除しますか？</p>
+					<div class="Modal">
+						<button type="button" onclick="location.href='comp_delete'"
+							class="basic_btn btn-primary">削除</button>
+						<button type="button" onclick="closeModal()"
+							class="cancel_btn btn-primary">キャンセル</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div id="fadeLayer"></div>
+	<script src="./js/commons.js"></script>
+</body>
+</html>

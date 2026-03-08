@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>大会作成</title>
+<link th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}"
+	rel="stylesheet">
+<link href="/css/shoma.css" rel="stylesheet">
+<link href="/css/yuya.css" rel="stylesheet">
+
+</head>
+<body>
+	<nav class="navbar navbar-expand-sm navbar-dark sticky-top" style="background: linear-gradient(90deg, #0D47A1, #1565C0); box-shadow: 0 2px 8px rgba(13,71,161,0.4);">
+
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarNav4" aria-controls="navbarNav4"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<a href="tournament" class="navbar-brand"><img
+			src="./images/ゆうやロゴ1.png" class="login_logo">Match Point</a>
+		<div class="collapse navbar-collapse justify-content-end">
+			<ul class="navbar-nav">
+
+				<li class="nav-item active"><a class="nav-link" href="/logout">ログアウト</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="compinfo input-size">
+		<div class="text-center">
+			<p class="error" th:text="${errorMsg}"></p>
+		</div>
+
+		<form action="comp_list" th:object="${compInfo}" method="POST"
+			class="form-horizontal">
+			<div class="width-setting">
+				<div class="text-right">
+					<button type="button" onclick="location.href='comp_list_back'"
+						class="btn btn-primary">戻る</button>
+				</div>
+			</div>
+			<div class="text-center">
+				<div class="form-group">
+					<label>大会名:</label> <input
+						type="text" th:field="*{compName}"> <span class="error"
+						th:each="error: ${#fields.errors('compName')}"> [[ ${error}
+						]] </span>
+				</div>
+
+				<div class="form-group">
+					<label>開催日:</label> <input
+						type="date" th:field="*{compDate}"> <span class="error"
+						th:each="error: ${#fields.errors('compDate')}"> [[ ${error}
+						]] </span>
+				</div>
+
+				<div class="form-group">
+					<label>場所:</label> <input
+						type="text" th:field="*{compPlace}"> <span class="error"
+						th:each="error: ${#fields.errors('compPlace')}"> [[
+						${error} ]] </span>
+				</div>
+
+				<div class="form-group">
+					<label>大会ログインID:</label> <input
+						type="text" th:field="*{compLoginId}"> <span class="error"
+						th:each="error: ${#fields.errors('compLoginId')}"> [[
+						${error} ]] </span>
+				</div>
+
+				<div class="form-group">
+					<label>トーナメント数:</label> <input
+						type="number" id="tournamentCount" th:field="*{tournamentCount}"
+						max="10" min="1" placeholder="最大10まで"
+						onChange="tournamentCountCheck()"> <span class="error"
+						th:each="error: ${#fields.errors('tournamentCount')}"> [[
+						${error} ]] </span>
+				</div>
+
+				<div class="form-group">
+					<label>大会概要:</label> <input
+						type="text" th:field="*{memo}">
+				</div>
+			</div>
+
+			<div class="text-center">
+				<button type="submit" name="create" class="btn btn-primary">作成</button>
+			</div>
+		</form>
+	</div>
+
+	<script>
+		function tournamentCountCheck() {
+			const tournamentCount = document.getElementById('tournamentCount')
+
+			if (tournamentCount.value > 10) {
+				tournamentCount.value = 10
+			}
+		}
+	</script>
+</body>
+</html>
