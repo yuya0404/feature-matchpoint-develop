@@ -1,11 +1,11 @@
 insert into management values ('admin', 'admin');
 
-insert into comp (comp_login_id, comp_name, comp_date, comp_place, game_type, tournament_count, memo) values
-('comp1', '2022年度6月大会',  '2022-06-11', '那覇市市民体育館',   2, 4, ''),
-('comp2', '2022年度9月大会',  '2022-09-21', '沖縄市市民体育館',   2, 2, ''),
-('comp3', '2022年度12月大会', '2022-12-25', '宜野湾市立体育館',   2, 2, ''),
-('comp4', '2023年度3月大会',  '2023-03-15', '那覇市市民体育館',   1, 2, 'シングルス大会'),
-('comp5', '2023年度6月大会',  '2023-06-01', '沖縄市市民体育館',   2, 4, '');
+insert into comp (comp_login_id, comp_name, comp_date, comp_place, game_type, tournament_count, tournament_edit_status, memo) values
+('comp1', '2022年度6月大会',  '2022-06-11', '那覇市市民体育館',   2, 4, 1, ''),
+('comp2', '2022年度9月大会',  '2022-09-21', '沖縄市市民体育館',   2, 2, 1, ''),
+('comp3', '2022年度12月大会', '2022-12-25', '宜野湾市立体育館',   2, 2, 1, ''),
+('comp4', '2023年度3月大会',  '2023-03-15', '那覇市市民体育館',   1, 2, 0, 'シングルス大会'),
+('comp5', '2023年度6月大会',  '2023-06-01', '沖縄市市民体育館',   2, 4, 0, '');
 
 insert into team (comp_id, player_a_name, player_b_name, tournament_no) values
 (1,'山田太郎','山田花子',1),
@@ -91,6 +91,22 @@ insert into match (comp_id, game_no, team_id_a, team_id_b) values
 (1,26,26,28),
 (1,27,30,32),
 (1,28,28,32);
+
+insert into match (comp_id, game_no, team_id_a, team_id_b) values
+(2,1,30,31),
+(2,2,32,33),
+(2,4,34,35),
+(2,5,36,37);
+
+insert into match (comp_id, game_no, team_id_a, team_id_b) values
+(3,1,38,39),
+(3,2,40,41),
+(3,3,42,43),
+(3,4,44,45),
+(3,8,46,47),
+(3,9,48,49),
+(3,10,50,51),
+(3,11,52,53);
 
 insert into game_info (match_id, coat_no, judge_name, record_status, record_date, max_point, game_count) values
 (1,1,'佐藤裕子',2,'2022-06-18 13:00:57',11,1),
