@@ -66,12 +66,16 @@ const vue = new Vue({
                                     gameNo: matchFromDb.gameNo,
                                     player1: {
                                         id: matchFromDb.teamIdA,
-                                        name:  matchFromDb.teamAPlayer1 + "・" + matchFromDb.teamAPlayer2,
+                                        name: matchFromDb.teamAPlayer2
+                                            ? matchFromDb.teamAPlayer1 + "・" + matchFromDb.teamAPlayer2
+                                            : matchFromDb.teamAPlayer1,
                                         winner: false,
                                     },
                                     player2: {
                                         id: matchFromDb.teamIdB,
-                                        name:  matchFromDb.teamBPlayer1 + "・" + matchFromDb.teamBPlayer2,
+                                        name: matchFromDb.teamBPlayer2
+                                            ? matchFromDb.teamBPlayer1 + "・" + matchFromDb.teamBPlayer2
+                                            : matchFromDb.teamBPlayer1,
                                         winner: false,
                                     },
                                 };    
