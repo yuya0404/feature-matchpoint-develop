@@ -14,6 +14,11 @@
 .bg-top {
 	background-image: url("../images/badminton.png");
 	background-size: cover;
+	background-position: center;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	animation: slideIn 1s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
 }
 
@@ -28,6 +33,11 @@
   40%,100% {
     opacity: 1;
   }
+}
+
+.login_form {
+	width: 90%;
+	max-width: 600px;
 }
 
 .display-1{
