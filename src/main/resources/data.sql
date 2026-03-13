@@ -5,7 +5,8 @@ insert into comp (comp_login_id, comp_name, comp_date, comp_place, game_type, to
 ('comp2', '2022年度9月大会',  '2022-09-21', '沖縄市市民体育館',   2, 2, 1, ''),
 ('comp3', '2022年度12月大会', '2022-12-25', '宜野湾市立体育館',   2, 2, 1, ''),
 ('comp4', '2023年度3月大会',  '2023-03-15', '那覇市市民体育館',   1, 2, 0, 'シングルス大会'),
-('comp5', '2023年度6月大会',  '2023-06-01', '沖縄市市民体育館',   2, 4, 0, '');
+('comp5', '2023年度6月大会',  '2023-06-01', '沖縄市市民体育館',   2, 4, 0, ''),
+('peace', 'PEACEカップ in 多摩 2026', '2026-08-15', '多摩市立総合体育館', 2, 2, 1, '');
 
 insert into team (comp_id, player_a_name, player_b_name, tournament_no) values
 (1,'山田太郎','山田花子',1),
@@ -62,6 +63,15 @@ insert into team (comp_id, player_a_name, player_b_name, tournament_no) values
 (3,'中西 貴映','松山奈未',2),
 (3,'松本麻佑','志田千陽',2);
 
+insert into team (comp_id, player_a_name, player_b_name, tournament_no) values
+(6,'PEACEいぐさ','キャマラーデスゆうや',1),
+(6,'PEACEかずみ','PEACEりょう',1),
+(6,'PEACEりょうた','PEACEたくみ',1),
+(6,'PEACEけんすけ','PEACEてつや',1),
+(6,'PEACEじゅんぺい','PEACEゆうさく',2),
+(6,'PEACEDaichi','PEACEたろーくん',2),
+(6,'PEACEじゅんや','PEACEしんちゃん',2);
+
 insert into match (comp_id, game_no, team_id_a, team_id_b) values
 (1,1,1,2),
 (1,2,3,4),
@@ -107,6 +117,11 @@ insert into match (comp_id, game_no, team_id_a, team_id_b) values
 (3,9,48,49),
 (3,10,50,51),
 (3,11,52,53);
+
+insert into match (comp_id, game_no, team_id_a, team_id_b) values
+(6,1,54,55),
+(6,2,56,57),
+(6,4,58,59);
 
 insert into game_info (match_id, coat_no, judge_name, record_status, record_date, max_point, game_count) values
 (1,1,'佐藤裕子',2,'2022-06-18 13:00:57',11,1),
