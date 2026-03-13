@@ -46,7 +46,7 @@
 				<div class="error" th:text="${errorMsg}"></div>
 			</div>
 	
-			<div th:if="${session.tournamentEditStatus == 0}">
+			<div th:if="${session.loginId != null and session.tournamentEditStatus != 2}">
 			<input type="hidden"  th:field="*{teamId}">
 			<button type="submit" name="edit" value="edit" class="btn btn-primary">更新</button>
 			<button type="submit" name ="delete" value="delete" class="btn btn-primary">削除</button>
